@@ -10,9 +10,6 @@ import datetime
 from bs4 import BeautifulSoup as bs
 import requests
 
-
-            
-
 def registercontend(fecha,text1,text2,pagina):
     import sqlite3
     con = sqlite3.connect("scrapinDatos.db")
@@ -22,7 +19,6 @@ def registercontend(fecha,text1,text2,pagina):
     text1=text1.replace("'","")
     text2=text2.replace("'","")
     cur.execute("insert into data values ('{}','{}','{}','{}')".format(text1,text2,str(fecha),pagina))
-    
     
     con.commit()
 
@@ -45,14 +41,10 @@ def scraping1(url,fecha):
         nr+=1 
         pag=requests.get(url.format(nro=nr))
         pag2=bs(pag.content,"html5lib")
-        
-            
 
 def scraping2(url,fecha):
-   
     pag=requests.get(url)
     pag2=bs(pag.content,"html5lib")
-    
     ls=[]
     for x in  pag2.find_all('a',attrs={'class':"nota-link"}) :
         try:
@@ -62,18 +54,13 @@ def scraping2(url,fecha):
                 registercontend(text1=tex1,text2=tex1,fecha=fecha,pagina="El Deber")
         except:
             break
-                     
-     
-        
-        
+
 def scraping3(url,fecha):
     nr=0
     pag=requests.get(url.format(nro=nr))
     pag2=bs(pag.content,"html5lib")
     pagtext=pag2.text
     for x in range(10):
-        
-        
         ls=[]
         for x in  pag2.find_all('div',attrs={'class':"views-field ",'class':"views-field-nothing"}) :
             try:

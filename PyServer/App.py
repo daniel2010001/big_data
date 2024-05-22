@@ -57,7 +57,7 @@ def run_script():
             return jsonify(error='Faltan parámetros en la solicitud'), 400
 
         # Ejecutar el script de Python con los parámetros
-        result = subprocess.run(['python', 'scapyPaginas.py', parametro1, parametro2], capture_output=True, text=True)
+        result = subprocess.run(['python', './PyServer/scapyPaginas.py', parametro1, parametro2], capture_output=True, text=True)
         
         # Devolver la salida del script como respuesta
         return jsonify(output=result.stdout)
