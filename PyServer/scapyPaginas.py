@@ -12,7 +12,7 @@ import requests
 
 def registercontend(fecha,text1,text2,pagina):
     import sqlite3
-    con = sqlite3.connect("scrapinDatos.db")
+    con = sqlite3.connect("./PyServer/scrapinDatos.db")
     cur = con.cursor()
     cur.execute("create table if not exists data(title,description,fecha, pagina)")
     
